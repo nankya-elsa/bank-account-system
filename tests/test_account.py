@@ -60,3 +60,40 @@ class TestDeposit:
         account = BankAccount("004", "Emma Brice", 12000)
         with pytest.raises(ValueError):
             account.deposit(0)
+
+
+class TestWithdraw:
+    """
+    Test cases for withdrawing money from a bank account.
+    """
+    def test_withdraw_decreases_balance(self):
+        """
+        Test case for withdrawing money from a bank account.
+        """
+        account = BankAccount("005", "Michael Brown", 8000)
+        account.withdraw(2000)
+        assert account.balance == 6000
+
+    def test_withdraw_insufficient_funds_raises_error(self):
+        """
+        Test case for withdrawing more than the available balance.
+        """
+        account = BankAccount("005", "Michael Brown", 8000)
+        with pytest.raises(ValueError):
+            account.withdraw(9000)
+
+    def test_withdraw_negative_amount_raises_error(self):
+        """
+        Test case for withdrawing a negative amount.
+        """
+        account = BankAccount("005", "Michael Brown", 8000)
+        with pytest.raises(ValueError):
+            account.withdraw(-500)
+
+    def test_withdraw_zero_raises_error(self):
+        """
+        Test case for withdrawing zero amount.
+        """
+        account = BankAccount("005", "Michael Brown", 8000)
+        with pytest.raises(ValueError):
+            account.withdraw(0)
