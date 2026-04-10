@@ -97,3 +97,35 @@ class TestWithdraw:
         account = BankAccount("005", "Michael Brown", 8000)
         with pytest.raises(ValueError):
             account.withdraw(0)
+
+
+class TestTransactionHistory:
+    """
+    Test cases for transaction history.
+    """
+    def test_new_account_has_an_empty_transaction_history(self):
+        """
+        Test case for a new account having an empty transaction history.
+        """
+        account = BankAccount("006", "Sarah Connor", 10000)
+        assert hasattr(account, 'transaction_history')
+        assert isinstance(account.transaction_history, list)
+        assert len(account.transaction_history) == 0
+
+    def test_deposit_recorded_in_transaction_history(self):
+        """
+        Test case for a deposit being recorded in the transaction history.
+        """
+        account = BankAccount("006", "Sarah Connor", 10000)
+        account.deposit(5000)
+        assert len(account.transaction_history) == 1
+        assert account.transaction_history[0] == {"type": "deposit", "amount": 5000}
+
+    def test_withdrawal_recorded_in_transaction_history(self):
+        """
+        Test case for a withdrawal being recorded in the transaction history.
+        """
+        account = BankAccount("006", "Sarah Connor", 10000)
+        account.withdraw(3000)
+        assert len(account.transaction_history) == 1
+        assert account.transaction_history[0] == {"type": "withdrawal", "amount": 3000}
