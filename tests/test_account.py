@@ -119,7 +119,10 @@ class TestTransactionHistory:
         account = BankAccount("006", "Sarah Connor", 10000)
         account.deposit(5000)
         assert len(account.transaction_history) == 1
-        assert account.transaction_history[0] == {"type": "deposit", "amount": 5000}
+        assert account.transaction_history[0] == {
+            "type": "deposit",
+            "amount": 5000
+            }
 
     def test_withdrawal_recorded_in_transaction_history(self):
         """
@@ -128,4 +131,7 @@ class TestTransactionHistory:
         account = BankAccount("006", "Sarah Connor", 10000)
         account.withdraw(3000)
         assert len(account.transaction_history) == 1
-        assert account.transaction_history[0] == {"type": "withdrawal", "amount": 3000}
+        assert account.transaction_history[0] == {
+            "type": "withdrawal",
+            "amount": 3000
+            }

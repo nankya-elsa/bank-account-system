@@ -25,4 +25,6 @@ class BankAccount:
         if amount > self.balance:
             raise ValueError("Insufficient funds for withdrawal.")
         self.balance -= amount
-        self.transaction_history.append({"type": "withdrawal", "amount": amount})
+        self.transaction_history.append(
+            {"type": "withdrawal", "amount": amount}
+            )
