@@ -2,6 +2,7 @@
 from bank.account import BankAccount
 import pytest
 
+
 class TestBankAccount:
     """
     Test cases for different bank operations.
@@ -29,5 +30,5 @@ class TestBankAccount:
         Test case for creating a new bank account with negative balance.
         """
         with pytest.raises(ValueError):
-          BankAccount("003", "Jane Doe", -100)
+            BankAccount("003", "Jane Doe", -100)
 
