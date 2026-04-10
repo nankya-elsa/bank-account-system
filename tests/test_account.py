@@ -32,6 +32,7 @@ class TestBankAccountCreation:
         with pytest.raises(ValueError):
             BankAccount("003", "Jane Doe", -100)
 
+
 class TestDeposit:
     """
     Test cases for depositing money into a bank account.
