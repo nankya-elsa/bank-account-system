@@ -3,9 +3,9 @@ from bank.account import BankAccount
 import pytest
 
 
-class TestBankAccount:
+class TestBankAccountCreation:
     """
-    Test cases for different bank operations.
+    Test cases for creating bank accounts.
     """
     def test_create_account_success(self):
         """
@@ -31,3 +31,31 @@ class TestBankAccount:
         """
         with pytest.raises(ValueError):
             BankAccount("003", "Jane Doe", -100)
+
+class TestDeposit:
+    """
+    Test cases for depositing money into a bank account.
+    """
+    def test_deposit_increases_balance(self):
+        """
+        Test case for depositing money into a bank account.
+        """
+        account = BankAccount("004", "Emma Brice", 12000)
+        account.deposit(3000)
+        assert account.balance == 15000
+
+    def test_deposit_negative_amount_raises_error(self):
+        """
+        Test case for depositing a negative amount.
+        """
+        account = BankAccount("004", "Emma Brice", 12000)
+        with pytest.raises(ValueError):
+            account.deposit(-500)
+
+    def test_deposit_zero_raises_error(self):
+        """
+        Test case for depositing zero amount.
+        """
+        account = BankAccount("004", "Emma Brice", 12000)
+        with pytest.raises(ValueError):
+            account.deposit(0)

@@ -9,3 +9,9 @@ class BankAccount:
         self.account_number = account_number
         self.account_holder = account_holder
         self.balance = balance
+
+    # Method to deposit money into the account
+    def deposit(self, amount):
+        if amount <= 0:
+            raise ValueError("Deposit amount must be a positive number.")
+        self.balance += amount
